@@ -1,0 +1,1 @@
+export async function exportTextDocument(projectName:string,source:string){const blob=new Blob([`Workflow Studio\n${projectName}\n\n${source}`],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`${projectName.replace(/\s+/g,'-')}.txt`;a.click();URL.revokeObjectURL(url)}
