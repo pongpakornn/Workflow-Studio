@@ -1,0 +1,3 @@
+const API=process.env.NEXT_PUBLIC_API_URL||'http://localhost:5000/api';
+export async function GET(){try{const r=await fetch(`${API}/projects`,{cache:'no-store'});return new Response(await r.text(),{status:r.status,headers:{'content-type':'application/json'}})}catch{return Response.json({error:'API unavailable'},{status:503})}}
+export async function POST(req:Request){try{const r=await fetch(`${API}/projects`,{method:'POST',headers:{'content-type':'application/json'},body:await req.text()});return new Response(await r.text(),{status:r.status,headers:{'content-type':'application/json'}})}catch{return Response.json({error:'API unavailable'},{status:503})}}
