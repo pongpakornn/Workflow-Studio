@@ -1,0 +1,2 @@
+import {useEffect,useRef,useState} from 'react';
+export function useAutoSave<T>(value:T,save:(value:T)=>Promise<void>,delay=700){const [status,setStatus]=useState<'saved'|'saving'|'error'>('saved');const first=useRef(true);useEffect(()=>{if(first.current){first.current=false;return}setStatus('saving');const t=setTimeout(()=>save(value).then(()=>setStatus('saved')).catch(()=>setStatus('error')),delay);return()=>clearTimeout(t)},[value,save,delay]);return status}
